@@ -6,3 +6,6 @@ class Project(models.Model):
     description = models.CharField(max_length=300)
     image = models.ImageField(upload_to='portfolio/images/')
     url = models.URLField(blank=True)   #We used 'blank=True' to open url in new tab
+
+    def __str__(self): #return title in admin-panel
+        return self.title

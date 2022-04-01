@@ -1,18 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Blogs</title>
-</head>
-<body>
-<h1>Blog!</h1>
+{% extends 'portfolio/base.html' %}
+{% block content %}
 
-{% for blog in blogs %}
-<h2>{{ blog.title }}</h2>
-<h5>{{ blog.date }}</h5>
-<p>{{ blog.description }}</p>
+    <h2>Pavel has written {{blogs.count}} blog{{blogs.count|pluralize}}</h2>
+    {% for blog in blogs %}
 
-{% endfor %}
+        <a href="{% url 'blog:detail' blog.id %}"><h2>{{ blog.title }}</h2></a>
+        <h5>{{ blog.date|date:'d F Y' }}</h5>
+        <p>{{ blog.description|safe|truncatechars:100 }}</p>
 
-</body>
-</html>
+    {% endfor %}
+
+{% endblock %}
