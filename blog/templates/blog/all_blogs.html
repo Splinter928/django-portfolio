@@ -1,13 +1,16 @@
 {% extends 'portfolio/base.html' %}
 {% block content %}
 
-    <h2>Pavel has written {{blogs.count}} blog{{blogs.count|pluralize}}</h2>
-    {% for blog in blogs %}
+<h2 class="text-center mb-5">Pavel has written {{blogs.count}} blog{{blogs.count|pluralize}}</h2>
+{% for blog in blogs %}
 
+<div class="row justify-content-center my-3">
+    <div class="col-md-10">
         <a href="{% url 'blog:detail' blog.id %}"><h2>{{ blog.title }}</h2></a>
-        <h5>{{ blog.date|date:'d F Y' }}</h5>
+        <h5 class="text-muted">{{ blog.date|date:'d F Y' }}</h5>
         <p>{{ blog.description|safe|truncatechars:100 }}</p>
-
-    {% endfor %}
+    </div>
+</div>
+{% endfor %}
 
 {% endblock %}
